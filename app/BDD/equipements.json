@@ -1,0 +1,19 @@
+    
+{
+    "equipement": [
+        {
+            "constructeur": "Mikrotik",
+            "type_de_material": "routeur",
+            "IP": "192.168.56.210",
+            "DNS": "",
+            "description": "Routeur Mikrotik à surveiller"
+        },
+        {
+            "constructeur": "cisco",
+            "type_de_material": "routeur",
+            "IP": "192.168.56.210",
+            "DNS": "",
+            "description": "Routeur Mikrotik à surveiller"
+        }
+    ]
+}
