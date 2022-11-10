@@ -24,6 +24,7 @@ def open_json_file(nom_de_fichier_json):
 # chargement de contenu du fichier json
 ficheir_equipements = open_json_file(f_equipements)
 OID_low_level = open_json_file(f_oid_low_level)
+OID_high_level = open_json_file(f_oid_high_level)
 
 
 # Tableau pour stocker le resultat de SNMP
