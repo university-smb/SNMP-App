@@ -6,6 +6,7 @@
 
 {% block content %}
 
+
 <section class="container mt-4">
 
     {% if msg %}
@@ -47,7 +48,7 @@
                     {% endif %} 
                 </td>
                 <td>
-                    <a href="/equipement/{{ loop.index }}/edit-equipement"><i class="fa fa-pencil text-black m-2"></i></a>
+                    <a href="/equipement/{{ row[0] }}/edit-equipement"><i class="fa fa-pencil text-black m-2"></i></a>
                 </td>
                 <td>
 

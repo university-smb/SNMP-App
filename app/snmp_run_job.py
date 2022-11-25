@@ -1,12 +1,13 @@
 
-
-
 from models import *
 from snmp import Snmp_server
 from BDD.connect import *
 import time
 import json
 import calendar
+
+
+
 
 
 def snmp_job():
@@ -48,7 +49,7 @@ def snmp_job():
 
         
         insert_sql = "INSERT INTO snmp_result (timestamp, equipement_id, data) VALUES (%s, %s, %s)"
-        insert_val = (time_stamp, equipement_id, str(data))
+        insert_val = (time_stamp, equipement_id, json.dumps(data))
 
         conn = connection.cursor()
         conn.execute(insert_sql, insert_val)
@@ -58,11 +59,11 @@ def snmp_job():
     
 
 
-
+"""
 while True:
     print("it's running")
     snmp_job()
-    time.sleep(2)
+    time.sleep(3)
 
-
+"""
 

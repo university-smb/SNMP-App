@@ -7,68 +7,150 @@
 
 {% block content %}
 
-<h1> Wellcome </h1>
-<p> pour afficher le graph pour different equipement, ajouter une button submit</p>
+<h1> Default Graphe </h1>
+<small> This is a default graph page, our application show by default this graph, this is the graph for first equipement in our BDD</small>
+<br><hr>
 
-<canvas id="chart" width="600" height="400"></canvas>
+<div class="m-4">
+    <a href="/equipement/start-supervision" class="btn btn-success"> Start </a>
+    <a href="/equipement/stop-supervision" class="btn btn-danger"> Stop </a>
+</div>
+
+
+<p class="mt-4"> pour afficher le graph pour different equipement, ajouter une button submit</p>
+
+
+<section class="container mt-4">
+
+    <div class="row">
+        <div class="col">
+
+            <h1> Débit Entrant </h1>
+            <canvas id="chart" width="600" height="400"></canvas>
+        </div>
+        <div class="col">
+            <h1> Débit Sortant </h1>
+            <canvas id="chart1" width="600" height="400"></canvas>
+        </div>
+    </div>
+        
+    
+    
+
+    <canvas id="pie" width="600" height="400"></canvas>
+
+
+    
+    {{ data['labels'] }}
 
 
 
+    <script>
 
-<script>
-
-    // bar chart data
-    var barData = {
-        labels : [
-        {% for item in labels %}
-            "{{ item }}",
+        var pieData = [
+            {% for item, label, colors in data['set'] %}
+            {
+                value: {{item}},
+                label: "{{label}}",
+                color : "{{colors}}"
+            },
             {% endfor %}
-        ],
+        ];
 
-        datasets : [{
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
-            bezierCurve : false,
-            data : [
-                {% for item in values %}
-                "{{ item }}",
-                {% endfor %}
-            ]
-        }]
-    }
+        // draw pie chart
+        new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
 
-    Chart.defaults.global.animationSteps = 50;
-    Chart.defaults.global.tooltipYPadding = 16;
-    Chart.defaults.global.tooltipCornerRadius = 0;
-    Chart.defaults.global.tooltipTitleFontStyle = "normal";
-    Chart.defaults.global.tooltipFillColor = "rgba(0,0,0,0.8)";
-    Chart.defaults.global.animationEasing = "easeOutBounce";
-    Chart.defaults.global.responsive = false;
-    Chart.defaults.global.scaleLineColor = "black";
-    Chart.defaults.global.scaleFontSize = 16;
+        // End pie
 
-    // get bar chart canvas
-    var mychart = document.getElementById("chart").getContext("2d");
 
-    steps = 10
-    max = {{ max }}
-    // draw bar chart
-    var LineChartDemo = new Chart(mychart).Line(barData, {
-      scaleOverride: true,
-      scaleSteps: steps,
-      scaleStepWidth: Math.ceil(max / steps),
-      scaleStartValue: 0,
-      scaleShowVerticalLines: true,
-      scaleShowGridLines : true,
-      barShowStroke : true,
-      scaleShowLabels: true,
-      bezierCurve: false,
-    });
 
-</script>
+        
+        // bar chart data
+        var barChart_entrat_data = {
+            labels : {{ data['labels']}},
+
+            datasets : [{
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                bezierCurve : false,
+                data : {{ data['debit_entrant'] }}
+            }]
+        };
+
+
+
+        // get bar chart canvas
+        var bar_chart_entrant = document.getElementById("chart").getContext("2d");
+
+        steps = 10
+        max = {{ data['max'] * 1.2 }}
+        // draw bar chart
+        new Chart(bar_chart_entrant).Line(barChart_entrat_data, {
+            scaleOverride: true,
+            scaleSteps: steps,
+            scaleStepWidth: Math.ceil(max / steps),
+            scaleStartValue: 0,
+            scaleShowVerticalLines: true,
+            scaleShowGridLines : true,
+            barShowStroke : true,
+            scaleShowLabels: true,
+            bezierCurve: false,
+        });
+
+        // End chart entranat
+
+
+
+
+
+
+
+        var barChart_sortant_data = {
+            labels : {{ data['labels']}},
+
+            datasets : [{
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                bezierCurve : false,
+                data : {{ data['debit_sortant'] }}
+            }]
+        };
+
+        
+
+        // get bar chart canvas
+        var mychart1 = document.getElementById("chart1").getContext("2d");
+
+        steps = 10
+        max = {{ data['max'] * 1.2 }}
+        // draw bar chart
+        new Chart(mychart1).Line(barChart_sortant_data, {
+            scaleOverride: true,
+            scaleSteps: steps,
+            scaleStepWidth: Math.ceil(max / steps),
+            scaleStartValue: 0,
+            scaleShowVerticalLines: true,
+            scaleShowGridLines : true,
+            barShowStroke : true,
+            scaleShowLabels: true,
+            bezierCurve: false,
+        });
+
+
+
+    </script>
+
+
+</section>
+
+
 
 {% endblock %}
