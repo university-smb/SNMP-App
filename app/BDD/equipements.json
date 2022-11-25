@@ -2,18 +2,28 @@
 {
     "equipement": [
         {
-            "constructeur": "Mikrotik",
+            "constructeur": "mikrotik",
             "type_de_material": "routeur",
             "IP": "192.168.56.210",
             "DNS": "",
-            "description": "Routeur Mikrotik à surveiller"
+            "description": "Routeur Mikrotik à surveiller",
+            "level": "1"
+        },
+        {
+            "constructeur": "mikrotik",
+            "type_de_material": "switch",
+            "IP": "192.168.56.210",
+            "DNS": "",
+            "description": "Routeur Mikrotik à surveiller",
+            "level": "1"
         },
         {
             "constructeur": "cisco",
             "type_de_material": "routeur",
             "IP": "192.168.56.210",
             "DNS": "",
-            "description": "Routeur Mikrotik à surveiller"
+            "description": "Routeur Mikrotik à surveiller",
+            "level": "0"
         }
     ]
 }

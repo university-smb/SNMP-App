@@ -2,9 +2,22 @@
 
 class OidLevel:
 
+    #oids = []
     # parametre d'initalisation de class
-    def __init__(self, oid_level):
-        self.oid_level = oid_level
+    
+    def __init__(self, obj):
+        self.level = obj
+    
+
+    """
+    def __init__(self, equipement):
+        self.equipement = equipement
+    """
+
+    def add_oids(self):
+        return self.oids.append(self.obj)
+
+
 
 
 

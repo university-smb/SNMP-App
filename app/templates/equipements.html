@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %} Equipement - {% endblock %}
+
+
+
+{% block content %}
+
+<section class="container mt-4">
+
+    {% if msg %}
+    <div class="alert alert-success">
+        <ul class="list-unstyled">
+          <li> {{msg}} </li>
+        </ul>
+    </div>
+    {% endif %}
+
+    <a href="/equipement/add-equipement" class="btn btn-success"> <i class="fa fa-plus"></i> Ajouter </a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Constructeur</th>
+            <th scope="col">Material</th>
+            <th scope="col">IP/DNS</th>
+            <th scope="col">Description</th>
+            <th scope="col">OID Level</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td> {{ row[0] }} </td>
+                <td> {{ row[1] }} </td>
+                <td> {{ row[2] }} </td>
+                <td> {{ row[3] }} </td>
+                <td> {{ row[4] }} </td>
+                <td> 
+                    {% if row[5]=='1' %} 
+                        High Level
+                    {% else %} 
+                        Low Level
+                    {% endif %} 
+                </td>
+                <td>
+                    <a href="/equipement/{{ loop.index }}/edit-equipement"><i class="fa fa-pencil text-black m-2"></i></a>
+                </td>
+                <td>
+
+                    <form action="/equipement/delete-equipement" method="post" id="form">
+                        <input type="hidden" name="id" value="{{row[0]}}">
+                        <button type="submit" class="btn btn-danger"> Delete </button>
+                    </form>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}
+
+
