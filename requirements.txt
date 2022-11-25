@@ -1,7 +1,6 @@
 flask
 pysnmp
-sqlalchemy
 schedule
 calendar
-threading
+logging
 mysql-connector-python
