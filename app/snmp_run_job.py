@@ -59,11 +59,3 @@ def snmp_job():
     
 
 
-"""
-while True:
-    print("it's running")
-    snmp_job()
-    time.sleep(3)
-
-"""
-

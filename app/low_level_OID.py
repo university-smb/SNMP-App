@@ -51,24 +51,4 @@ class LowLevelOID:
 
 
 
-"""
-
-oid = {"cpu" : "1.3.6.1.4.1.14988.1.1.3.6"}
-oid_list = { "cpus" : "1.3.6.1.4.1.14988.1.1.3.6", "ram": "1.3.6.1.2.1.25.2.3.1.5.65536"}
-
-
-lo = LowLevelOID(oid_list)
-print(lo)
-lo.add_oid(oid)
-print(lo)
-lo.del_oid('ram')
-print(lo)
-
-#print(lo.oid_existe(list(oid.keys())[0]))
-"""
-
-
-
-
-
 

@@ -40,34 +40,3 @@ def get_oids(level):
 
 
 
-
-
-
-
-
-
-"""
-from sqlalchemy import Column, Integer, Text
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()    # Required
-
-
-
-
-class Contact( Base ):
-    __tablename__ = 'T_Contacts'
-
-    id = Column(Integer, primary_key=True)
-    firstName = Column(Text)
-    lastName = Column(Text)
-
-    def __init__(self, pk=0, fn="John", ln="Doe"):
-        self.id = pk
-        self.firstName = fn
-        self.lastName = ln
-
-    def __str__(self):
-        return self.firstName + " " + self.lastName
-"""
-
